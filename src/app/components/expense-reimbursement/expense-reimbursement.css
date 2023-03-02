@@ -1,0 +1,96 @@
+.container-reimbursement {
+  width: 100%;
+  margin: 24px;
+}
+
+.wrapper-card-reimbursement {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.top-header-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.header-reimbursement-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-link-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 8px 24px;
+  height: 36px;
+  font-size: 12px;
+  color: #fff;
+  margin: 0 8px;
+}
+
+.btn-link:hover {
+  opacity: 0.9;
+}
+
+.btn-history {
+  background: linear-gradient(90deg, #e69755 0.1%, #ff5444 100.01%);
+}
+
+.btn-primary {
+  background: linear-gradient(270.74deg, #2e3579 0.35%, #005fbc 99.1%);
+}
+
+/* Body */
+
+.row-table-header {
+  font-size: 16px;
+  font-weight: bold;
+  background: #005fbc;
+  border-radius: 4px;
+  padding: 6px;
+  margin: 0;
+  color: #fff;
+}
+
+.row-table-sub-body {
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 6px;
+  margin: 0;
+}
+
+.isBg {
+  background: #f2f2f7;
+}
+
+/* Footer */
+
+.footer-reimbursement-wrapper {
+  display: inline-flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-reimbursement-wrapper > p {
+  font-size: 12px;
+  font-weight: 500;
+}
