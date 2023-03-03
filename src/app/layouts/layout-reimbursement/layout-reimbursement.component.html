@@ -1,0 +1,16 @@
+<section class="container-reimbursement">
+  <div class="card-container card shadow p-4 wrapper-card-reimbursement">
+    <div
+      class="top-header-wrapper"
+      [ngClass]="
+        styleHeader === 'space-between' ? 'space-between-title' : 'center-title'
+      "
+    >
+      <h1 style="margin-bottom: -10px" class="header-reimbursement-title">
+        {{ titleHeader }}
+      </h1>
+      <ng-content select="[cardHeader]"> </ng-content>
+    </div>
+    <ng-content select="[cardContent]"></ng-content>
+  </div>
+</section>

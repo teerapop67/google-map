@@ -1,0 +1,121 @@
+/* Header */
+.arrow-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 4px;
+  background: linear-gradient(90deg, #e69755 0.1%, #ff5444 100.01%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow-back > img {
+  width: 15px;
+  height: 15px;
+}
+
+/* Body */
+
+.container-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content-wrapper > p {
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+/* Body Input */
+
+.wrapper-control {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.rate-input-wrapper-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rate-input-wrapper-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.text-content-rate {
+  margin: 0;
+}
+
+.input-rate {
+  border: 1px solid #c7c7cc;
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+.add-rate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.add-rate > p {
+  color: #005fbc;
+  margin: 0;
+}
+
+.add-rate > span {
+  margin-bottom: 4px;
+}
+
+/* Btn Submit */
+
+.btn-submit-wrapper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 350px;
+  margin: 0 auto;
+  gap: 24px;
+}
+
+.btn-submit-wrapper > button {
+  color: #fff;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 8px 64px;
+}
+
+.btn-submit-wrapper > button:nth-child(2) {
+  background: linear-gradient(270.74deg, #2e3579 0.35%, #005fbc 99.1%);
+  border: none;
+}
+
+.btn-submit-wrapper > button:nth-child(1) {
+  background: transparent;
+  border: 1px solid #005fbc;
+  color: #005fbc;
+}
+
+.error {
+  color: #ef0303;
+  font-size: 14px;
+}

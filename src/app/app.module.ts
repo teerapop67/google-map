@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 
 import { environment } from './environments/environment';
+import { LayoutReimbursementComponent } from './layouts/layout-reimbursement/layout-reimbursement.component';
 
 if (environment.production) {
   enableProdMode();

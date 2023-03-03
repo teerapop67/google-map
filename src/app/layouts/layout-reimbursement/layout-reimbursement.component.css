@@ -1,0 +1,33 @@
+.container-reimbursement {
+  width: 100%;
+  margin: 24px;
+}
+
+.wrapper-card-reimbursement {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-header-wrapper {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.space-between-title {
+  justify-content: space-between;
+}
+
+.center-title {
+  justify-content: center;
+}
+
+.header-reimbursement-title {
+  font-size: 24px;
+}

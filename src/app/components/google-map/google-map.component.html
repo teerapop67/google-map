@@ -1,1 +1,20 @@
+<div>
+  <label>Enter address</label>
+  <input
+    type="text"
+    (keydown.enter)="$event.preventDefault()"
+    placeholder="Search Origin"
+    type="text"
+    #searchOrigin
+  />
+
+  <input
+    type="text"
+    (keydown.enter)="$event.preventDefault()"
+    placeholder="Search Destination"
+    type="text"
+    #searchDestination
+  />
+</div>
+
 <div style="height: 500px" id="map"></div>

@@ -1,0 +1,77 @@
+<app-layout-reimbursement
+  styleHeader="space-between"
+  titleHeader="รายละเอียดสิทธิการเบิกค่าพาหนะ"
+>
+  <ng-container cardHeader>
+    <!-- HEADER -->
+    <div class="btn-link-wrapper">
+      <a routerLink="/reimbursement/g" class="btn-link btn-history">
+        <img src="assets/icons/history-icon.png" alt="history-icon" />
+        ประวัติการเบิก
+      </a>
+      <a routerLink="/reimbursement/g" class="btn-link btn-primary">
+        <img src="assets/icons/comment-icon.png" alt="history-icon" />
+        ดูคำขอการเบิก
+      </a>
+      <a routerLink="/reimbursement/g" class="btn-link btn-primary">
+        <img src="assets/icons/add-icon.png" alt="history-icon" />
+        สร้างฟอร์มการเบิก
+      </a>
+    </div>
+  </ng-container>
+  <ng-container cardContent>
+    <!-- BODY TABLE -->
+    <div class="row row-table-header">
+      <div class="col">ประเภทพาหนะส่วนตัว</div>
+      <div class="col" style="margin-left: 150px">สามารถเบิกได้</div>
+    </div>
+    <div
+      class="row row-table-sub-body"
+      *ngFor="let rate of fareRate; index as i"
+      [ngClass]="i % 2 === 0 ? 'isBg' : ''"
+      [ngStyle]="{
+        'border-bottom': fareRate.length - 1 === i ? '1px solid #005fbc' : ''
+      }"
+    >
+      <div class="col">{{ rate.distance }}</div>
+      <div class="col">
+        <div class="row">
+          <div class="col" style="text-align: right">
+            <span>{{ rate.amountReimbursement }}</span>
+          </div>
+          <div class="col">
+            <img
+              src="assets/icons/info-icon.png"
+              alt="info-icon"
+              width="15"
+              height="15"
+              style="cursor: pointer"
+              tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+            />
+          </div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container cardContent>
+    <!-- Footer  -->
+    <div class="footer-reimbursement-wrapper">
+      <p>
+        หมายเหตุ: การเบิกค่าพาหนะ เดินทางโดยรถโดยสาร
+        สามารถเบิกตามจริงโดยการแนบหลักฐานการชำระเงิน <br />การเบิกค่าพาหนะ
+        ครั้งละไม่เกิน 500 บาท/คน
+      </p>
+      <a routerLink="/reimbursement/fare-rate" class="btn-link btn-history">
+        <img
+          src="assets/icons/edit-icon.png"
+          width="16"
+          height="16"
+          alt="history-icon"
+        />
+        แก้ไขอัตราค่าเดินทาง
+      </a>
+    </div>
+  </ng-container>
+</app-layout-reimbursement>

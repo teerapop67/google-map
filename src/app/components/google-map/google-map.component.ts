@@ -1,45 +1,36 @@
-import { Component } from '@angular/core';
-import { MapDirectionService } from 'src/app/service/map-direction.service';
-
+import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { LatLngType } from 'src/app/interface/interface';
 @Component({
   selector: 'app-google-map',
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.css'],
 })
 export class GoogleMapComponent {
-  map: any;
+  map!: any;
+  @ViewChild('searchOrigin') searchElementRefOrigin!: ElementRef;
 
-  constructor(private mapDirectionService: MapDirectionService) {}
+  @ViewChild('searchDestination') searchElementRefDestination!: ElementRef;
+
+  directionsRenderer: any;
+  directionsService: any;
+
+  originLatLng: LatLngType = { lat: 0, lng: 0 };
+  destinationLatLng: LatLngType = { lat: 0, lng: 0 };
+
+  constructor(private ngZone: NgZone) {}
 
   ngOnInit() {
-    this.initMapStart();
-    // const route = this.mapDirectionService.getRoute('sad', 'asdas');
-
-    // route.subscribe((res) => {
-    //   console.log('resฟหกฟหกฟหก: ', res);
-    // });
-
-    this.test();
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.directionsService = new google.maps.DirectionsService();
+    this.initMap();
   }
 
-  async test() {
-    const query = new URLSearchParams({
-      key: 'AIzaSyCsq54nA1YkGvh--X8YwZO-MMOu2IkpAJg',
-    }).toString();
-
-    await fetch(
-      `https://maps.googleapis.com/maps/api/directions/json?destination=วัดชัยชนะ&origin=บางปู&${query}`,
-      {
-        method: 'GET',
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => console.log('DATATATATA:', data));
+  ngAfterViewInit(): void {
+    // Binding autocomplete to search input control
+    this.setAutocompleteMap();
   }
 
-  private initMapStart() {
-    const directionsRenderer = new google.maps.DirectionsRenderer();
-    const directionsService = new google.maps.DirectionsService();
+  private initMap() {
     this.map = new google.maps.Map(
       document.getElementById('map') as HTMLElement,
       {
@@ -48,53 +39,80 @@ export class GoogleMapComponent {
       }
     );
 
-    directionsRenderer.setMap(this.map);
-
-    this.calculateAndDisplayRoute(directionsService, directionsRenderer);
+    this.directionsRenderer.setMap(this.map);
   }
 
-  private calculateAndDisplayRoute(
-    directionsService: any,
-    directionsRenderer: google.maps.DirectionsRenderer
+  private setAutocompleteMap(): void {
+    let autocompleteOrigin = new google.maps.places.Autocomplete(
+      this.searchElementRefOrigin.nativeElement
+    );
+
+    this.getPlaceLatLng(autocompleteOrigin, 'origin');
+
+    let autocompleteDestination = new google.maps.places.Autocomplete(
+      this.searchElementRefDestination.nativeElement
+    );
+
+    this.getPlaceLatLng(autocompleteDestination, 'destination');
+  }
+
+  getPlaceLatLng(autocomplete: google.maps.places.Autocomplete, type: string) {
+    autocomplete.addListener('place_changed', () => {
+      this.ngZone.run(() => {
+        //get the place result
+        let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+        //verify result
+        if (place.geometry === undefined || place.geometry === null) {
+          return;
+        }
+
+        this.assignValueToEachDirection(type, place);
+      });
+
+      console.log('Lat: ', this.destinationLatLng, 'Lng: ', this.originLatLng);
+    });
+  }
+
+  private assignValueToEachDirection(
+    type: string,
+    place: google.maps.places.PlaceResult | any
   ) {
-    directionsService
+    if (type === 'destination') {
+      this.destinationLatLng = {
+        lat: place.geometry.location?.lat(),
+        lng: place.geometry.location?.lng(),
+      };
+    } else {
+      this.originLatLng = {
+        lat: place.geometry.location?.lat(),
+        lng: place.geometry.location?.lng(),
+      };
+    }
+
+    if (this.destinationLatLng.lat !== 0 && this.originLatLng.lat !== 0) {
+      this.calculateAndDisplayRoute();
+      // this.originLatLng = { lat: 0, lng: 0 };
+      // this.destinationLatLng = { lat: 0, lng: 0 };
+    }
+  }
+
+  private calculateAndDisplayRoute() {
+    this.directionsService
       .route({
-        origin: { lat: 15.8686135, lng: 100.9918364 },
-        destination: { lat: 13.746389, lng: 100.535004 },
+        origin: { lat: this.originLatLng.lat, lng: this.originLatLng.lng },
+        destination: {
+          lat: this.destinationLatLng.lat,
+          lng: this.destinationLatLng.lng,
+        },
+
         travelMode: google.maps.TravelMode['DRIVING'],
       })
       .then((response: any) => {
         //get KM
         console.log('res: ', response.routes[0].legs[0]['distance'].text);
-        directionsRenderer.setDirections(response);
+        this.directionsRenderer.setDirections(response);
       })
       .catch((e: any) => window.alert('Directions request failed due to '));
-
-    this.isSearchNearbyPlace();
-  }
-
-  private isSearchNearbyPlace() {
-    var searchOrigin = new google.maps.LatLng(13.746389, 100.535004); // Statue of Liberty
-    var request = {
-      location: searchOrigin,
-      fields: ['name', 'geometry'],
-      radius: 100,
-    };
-
-    var service = new google.maps.places.PlacesService(this.map);
-
-    this.getValueAfterSearch(service, request);
-  }
-
-  private getValueAfterSearch(
-    service: google.maps.places.PlacesService,
-    request: any
-  ) {
-    service.nearbySearch(request, function (results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        var distance = 10000;
-        console.log('result search: ', results);
-      }
-    });
   }
 }

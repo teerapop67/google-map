@@ -1,1 +1,96 @@
-<p>edit-fare-rate works!</p>
+<app-layout-reimbursement
+  styleHeader="center"
+  titleHeader="แก้ไขการเบิกอัตราค่าเดินทาง"
+>
+  <!-- Header -->
+  <ng-container cardHeader>
+    <span routerLink="/reimbursement" class="arrow-back">
+      <img src="assets/icons/arrow-back-icon.png" alt="arrow" />
+    </span>
+  </ng-container>
+
+  <!-- Body -->
+  <ng-container cardContent>
+    <div class="container-body">
+      <form [formGroup]="rateFareForm" class="content-wrapper">
+        <div formArrayName="rateControl">
+          <p>ประเภทรถส่วนตัว</p>
+          <div *ngFor="let rateForm of rateControl.controls; let i = index">
+            <!-- Input Form -->
+            <div style="margin-bottom: 16px">
+              <div [formGroup]="rateForm" class="wrapper-control">
+                <!-- Input Left -->
+                <div class="rate-input-wrapper-left">
+                  <p class="text-content-rate">กิโลเมตรที่</p>
+                  <input
+                    formControlName="KM"
+                    type="text"
+                    required
+                    class="input-rate"
+                  />
+                  <p class="text-content-rate">ถึง</p>
+                  <input
+                    formControlName="TO"
+                    type="text"
+                    required
+                    class="input-rate"
+                  />
+                </div>
+                <!-- Input Right -->
+                <div class="rate-input-wrapper-right">
+                  <input
+                    formControlName="RATE"
+                    type="text"
+                    required
+                    class="input-rate"
+                  />
+                  <p class="text-content-rate">บาท</p>
+                  <img
+                    src="assets/icons/delete-icon.png"
+                    alt="delete-icon"
+                    width="15"
+                    height="15"
+                    style="cursor: pointer"
+                    (click)="removeRate(i)"
+                  />
+                </div>
+              </div>
+              <span
+                *ngIf="isValidFormSubmitted != null && !isValidFormSubmitted"
+                class="error"
+              >
+                <span
+                  *ngIf="
+                    rateControl.controls[i].get('KM')?.errors?.required ||
+                    rateControl.controls[i].get('TO')?.errors?.required ||
+                    rateControl.controls[i].get('RATE')?.errors?.required
+                  "
+                  >กรุณากรอกอัตราค่าเดินทาง</span
+                >
+                <span
+                  *ngIf="
+                    rateControl.controls[i].get('KM')?.errors?.min ||
+                    rateControl.controls[i].get('TO')?.errors?.min ||
+                    rateControl.controls[i].get('RATE')?.errors?.min
+                  "
+                  >กรุณากรอกอัตราค่าเดินทางที่มีค่ามากกว่า 0
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="add-rate" (click)="addRate(null, null, null)">
+            <span>
+              <img src="assets/icons/add-blue-icon.png" alt="history-icon" />
+            </span>
+            <p>เพิ่มอัตราค่าเดินทาง</p>
+          </div>
+        </div>
+      </form>
+      <div class="btn-submit-wrapper">
+        <button routerLink="/reimbursement">ยกเลิก</button>
+        <button type="submit" (click)="onFormSubmit()">ตกลง</button>
+      </div>
+    </div>
+  </ng-container>
+</app-layout-reimbursement>
