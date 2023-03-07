@@ -8,6 +8,10 @@ import { EditFareRateComponent } from './edit-fare-rate/edit-fare-rate.component
 import { HistoryReimbursementComponent } from './history-reimbursement/history-reimbursement.component';
 import { LayoutReimbursementComponent } from 'src/app/layouts/layout-reimbursement/layout-reimbursement.component';
 import { DetailReimbursementComponent } from './detail-reimbursement/detail-reimbursement.component';
+import { CreateFormReimbursementComponent } from './create-form-reimbursement/create-form-reimbursement.component';
+import { PersonalVehicleComponent } from './create-form-reimbursement/personal-vehicle/personal-vehicle.component';
+import { PublicTransportComponent } from './create-form-reimbursement/public-transport/public-transport.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,16 @@ import { DetailReimbursementComponent } from './detail-reimbursement/detail-reim
     HistoryReimbursementComponent,
     LayoutReimbursementComponent,
     DetailReimbursementComponent,
+    CreateFormReimbursementComponent,
+    PersonalVehicleComponent,
+    PublicTransportComponent,
   ],
   imports: [
     CommonModule,
     ExpenseReimbursementRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule,
   ],
 })
 export class ExpenseReimbursementModule {}

@@ -1,0 +1,6 @@
+.personal-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+  margin: 0 auto;
+}

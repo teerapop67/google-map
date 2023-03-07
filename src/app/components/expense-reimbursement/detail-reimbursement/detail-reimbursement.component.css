@@ -1,16 +1,4 @@
 /* Header */
-/* .top-header-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.header-reimbursement-title {
-  font-size: 16px;
-  font-weight: bold;
-} */
 
 .btn-link-wrapper {
   display: flex;
@@ -80,4 +68,11 @@
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
+}
+
+@media screen and (max-width: 950px) {
+  .btn-link-wrapper {
+    margin-top: 24px;
+    justify-content: center;
+  }
 }

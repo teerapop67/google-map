@@ -12,9 +12,9 @@
   <!-- Body -->
   <ng-container cardContent>
     <div class="container-body">
-      <form [formGroup]="rateFareForm" class="content-wrapper">
+      <form [formGroup]="rateFareForm" class="content-wrapper-edit-fare-rate">
         <div formArrayName="rateControl">
-          <p>ประเภทรถส่วนตัว</p>
+          <p class="sub-header">ประเภทรถส่วนตัว</p>
           <div *ngFor="let rateForm of rateControl.controls; let i = index">
             <!-- Input Form -->
             <div style="margin-bottom: 16px">

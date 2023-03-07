@@ -1,12 +1,23 @@
-import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  NgZone,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { LatLngType } from 'src/app/interface/interface';
 @Component({
   selector: 'app-google-map',
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.css'],
 })
-export class GoogleMapComponent {
+export class GoogleMapComponent implements OnInit {
   map!: any;
+
+  @Input() personalForm: FormGroup | any = {};
+
   @ViewChild('searchOrigin') searchElementRefOrigin!: ElementRef;
 
   @ViewChild('searchDestination') searchElementRefDestination!: ElementRef;
@@ -20,14 +31,18 @@ export class GoogleMapComponent {
   constructor(private ngZone: NgZone) {}
 
   ngOnInit() {
-    this.directionsRenderer = new google.maps.DirectionsRenderer();
-    this.directionsService = new google.maps.DirectionsService();
+    this.initDirection();
     this.initMap();
+    this.setDirectionWhenPageChange();
   }
 
-  ngAfterViewInit(): void {
-    // Binding autocomplete to search input control
-    this.setAutocompleteMap();
+  get getPersonalForm() {
+    return this.personalForm.controls;
+  }
+
+  private initDirection() {
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.directionsService = new google.maps.DirectionsService();
   }
 
   private initMap() {
@@ -42,7 +57,11 @@ export class GoogleMapComponent {
     this.directionsRenderer.setMap(this.map);
   }
 
-  private setAutocompleteMap(): void {
+  ngAfterViewInit(): void {
+    this.setAutocompleteMap();
+  }
+
+  private setAutocompleteMap() {
     let autocompleteOrigin = new google.maps.places.Autocomplete(
       this.searchElementRefOrigin.nativeElement
     );
@@ -56,7 +75,10 @@ export class GoogleMapComponent {
     this.getPlaceLatLng(autocompleteDestination, 'destination');
   }
 
-  getPlaceLatLng(autocomplete: google.maps.places.Autocomplete, type: string) {
+  private getPlaceLatLng(
+    autocomplete: google.maps.places.Autocomplete,
+    type: string
+  ) {
     autocomplete.addListener('place_changed', () => {
       this.ngZone.run(() => {
         //get the place result
@@ -69,8 +91,6 @@ export class GoogleMapComponent {
 
         this.assignValueToEachDirection(type, place);
       });
-
-      console.log('Lat: ', this.destinationLatLng, 'Lng: ', this.originLatLng);
     });
   }
 
@@ -78,6 +98,7 @@ export class GoogleMapComponent {
     type: string,
     place: google.maps.places.PlaceResult | any
   ) {
+    console.log('place:', place);
     if (type === 'destination') {
       this.destinationLatLng = {
         lat: place.geometry.location?.lat(),
@@ -92,8 +113,6 @@ export class GoogleMapComponent {
 
     if (this.destinationLatLng.lat !== 0 && this.originLatLng.lat !== 0) {
       this.calculateAndDisplayRoute();
-      // this.originLatLng = { lat: 0, lng: 0 };
-      // this.destinationLatLng = { lat: 0, lng: 0 };
     }
   }
 
@@ -109,10 +128,36 @@ export class GoogleMapComponent {
         travelMode: google.maps.TravelMode['DRIVING'],
       })
       .then((response: any) => {
-        //get KM
-        console.log('res: ', response.routes[0].legs[0]['distance'].text);
+        this.assignValueToFormSubmit(
+          response.routes[0].legs[0].start_address,
+          response.routes[0].legs[0].end_address,
+          response.routes[0].legs[0]['distance'].text
+        );
         this.directionsRenderer.setDirections(response);
       })
       .catch((e: any) => window.alert('Directions request failed due to '));
+  }
+
+  private setDirectionWhenPageChange() {
+    if (this.getPersonalForm['destinationLatLng'].value) {
+      this.originLatLng = this.getPersonalForm['originLatLng'].value;
+      this.destinationLatLng = this.getPersonalForm['destinationLatLng'].value;
+
+      this.calculateAndDisplayRoute();
+    }
+  }
+
+  private assignValueToFormSubmit(
+    origin: string,
+    destination: string,
+    km: number
+  ) {
+    this.personalForm.get('origin')?.setValue(origin);
+    this.personalForm.get('destination')?.setValue(destination);
+    this.personalForm.get('km')?.setValue(km);
+    this.personalForm.get('originLatLng')?.setValue(this.originLatLng);
+    this.personalForm
+      .get('destinationLatLng')
+      ?.setValue(this.destinationLatLng);
   }
 }

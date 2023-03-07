@@ -1,0 +1,35 @@
+<app-layout-reimbursement
+  styleHeader="center"
+  titleHeader="เบิกค่าพาหนะการเดินทาง"
+>
+  <!-- Header -->
+  <ng-container cardHeader>
+    <span routerLink="/reimbursement" class="arrow-back">
+      <img src="assets/icons/arrow-back-icon.png" alt="arrow" />
+    </span>
+  </ng-container>
+
+  <!-- Body -->
+  <ng-container cardContent>
+    <div class="form-top-wrapper">
+      <div style="display: flex; flex-direction: column">
+        <p class="header-input" style="width: 100%">ประเภทการเดินทาง*</p>
+        <app-dropdowns
+          [dropdownOptions]="typeOfTravels"
+          placeholderVal="เลือกประเภทการดินทาง"
+          (optionChosenEvent)="getTypeOfChosen($event)"
+        ></app-dropdowns>
+      </div>
+    </div>
+    <!-- Personal -->
+    <app-personal-vehicle
+      [personalForm]="personalForm"
+      *ngIf="typeChosen === typeOfTravels[0]"
+    ></app-personal-vehicle>
+    <!-- Public -->
+    <app-public-transport
+      [personalForm]="personalForm"
+      *ngIf="typeChosen === typeOfTravels[1]"
+    ></app-public-transport>
+  </ng-container>
+</app-layout-reimbursement>

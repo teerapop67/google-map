@@ -2,3 +2,59 @@
 * {
   font-family: "Kanit", sans-serif;
 }
+
+.container-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arrow-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 6px;
+  background: linear-gradient(90deg, #e69755 0.1%, #ff5444 100.01%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow-back > img {
+  width: 15px;
+  height: 15px;
+}
+
+.header-input {
+  font-size: 14px;
+  text-align: left;
+  margin-bottom: 2px;
+  line-height: 24px;
+}
+
+.space-btw {
+  justify-content: space-between;
+}
+
+.margin-top-input-title {
+  margin-top: 16px;
+}
+
+.inputs-form {
+  border: 1px solid #005fbc;
+  border-radius: 10px;
+  width: 100%;
+  padding-right: 26px;
+  padding-left: 14px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.error {
+  color: #ef0303;
+  font-size: 14px;
+}

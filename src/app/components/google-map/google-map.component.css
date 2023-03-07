@@ -1,0 +1,15 @@
+.google-map-wrapper {
+  background: #ffffff;
+  box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 24px 0;
+  max-width: 450px;
+  margin: 32px auto;
+}
+
+.map-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+  margin: 0 auto;
+}

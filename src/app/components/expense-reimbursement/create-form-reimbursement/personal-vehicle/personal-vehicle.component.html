@@ -1,0 +1,35 @@
+<form [formGroup]="personalForm">
+  <!-- Date picker -->
+  <div class="personal-wrapper">
+    <p class="header-input margin-top-input-title" style="width: 100%">
+      วันที่ต้องการเบิก*
+    </p>
+    <input
+      class="inputs-form"
+      type="text"
+      placeholder="เลือกวันที่ต้องการ"
+      formControlName="date"
+    />
+    <label
+      class="error"
+      *ngIf="getPersonalForm['date'].errors && getPersonalForm['date'].touched"
+      ><span *ngIf="getPersonalForm['date'].errors['required']"
+        >กรุณาเลือกวันที่ต้องการเบิก</span
+      ></label
+    >
+
+    <!-- Name of Works -->
+    <p class="header-input margin-top-input-title" style="width: 100%">
+      ชื่องาน*
+    </p>
+    <app-dropdowns
+      [dropdownOptions]="nameOfWorks"
+      placeholderVal="เลือกประเภทการดินทาง"
+      (optionChosenEvent)="getNameOfWorkChosen($event)"
+      validationAlert="กรุณาเลือกชื่องาน"
+    ></app-dropdowns>
+  </div>
+
+  <!-- Google Map -->
+  <app-google-map [personalForm]="personalForm"></app-google-map>
+</form>

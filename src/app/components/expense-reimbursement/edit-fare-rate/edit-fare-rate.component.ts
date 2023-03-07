@@ -33,8 +33,6 @@ export class EditFareRateComponent implements OnInit {
     });
 
     this.rateControl.push(rateForm);
-
-    console.log('form: ', this.rateFareForm.value.rateControl);
   }
 
   removeRate(rateControlIndex: number) {
@@ -43,12 +41,14 @@ export class EditFareRateComponent implements OnInit {
 
   onFormSubmit() {
     this.isValidFormSubmitted = false;
+
     if (this.rateFareForm.invalid) {
       return;
     }
+
     this.isValidFormSubmitted = true;
+
     let rateFormSubmit = this.rateFareForm.value;
-    console.log('asdasdasd', rateFormSubmit);
 
     this.router.navigateByUrl('/reimbursement');
   }

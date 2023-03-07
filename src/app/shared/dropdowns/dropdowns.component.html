@@ -1,0 +1,36 @@
+<div class="dropdowns-wrapper">
+  <!-- Input dropdowns -->
+  <input
+    type="text"
+    placeholder="{{ placeholderVal }}"
+    value="{{ inputDropdownValue }}"
+    (input)="onInputChange($event)"
+    (focus)="onInputChange($event)"
+  />
+
+  <span class="drop-arrow" (click)="isTurnOnOption('')"
+    ><img
+      [ngClass]="turnOnOption ? 'rotate-arrow' : ''"
+      width="22"
+      height="14"
+      alt="dropdown-icon"
+      src="assets/icons/dropdown-icon.png"
+  /></span>
+
+  <!-- Options -->
+  <div class="option-wrapper" *ngIf="turnOnOption">
+    <div
+      *ngFor="let option of filteredOptions; index as i"
+      (click)="isTurnOnOption(option)"
+    >
+      <div class="options-value">
+        {{ option }}
+      </div>
+    </div>
+  </div>
+</div>
+<label
+  class="error"
+  *ngIf="validationAlert && !inputDropdownValue && detectionTouch"
+  >{{ validationAlert }}</label
+>

@@ -1,0 +1,71 @@
+.dropdowns-wrapper {
+  display: flex;
+  border: 1px solid #005fbc;
+  border-radius: 10px;
+  position: relative;
+  padding-right: 26px;
+  padding-left: 14px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  width: 380px;
+}
+
+.dropdowns-wrapper > input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.rotate-arrow {
+  transform: rotate(180deg);
+}
+
+.drop-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #005fbc;
+  border-radius: 0px 10px 10px 0px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+}
+
+.dropdowns-wrapper .option-wrapper {
+  position: absolute;
+  width: 100%;
+  top: 40px;
+  left: 0;
+  border: 1px solid #005fbc;
+  border-radius: 10px;
+  font-size: 14px;
+  z-index: 99;
+  background: #fff;
+}
+
+.dropdowns-wrapper .option-wrapper > div:hover {
+  background: #005fbc;
+  cursor: pointer;
+  color: #fff;
+}
+
+.dropdowns-wrapper .option-wrapper > div:nth-last-child(1):hover {
+  border-radius: 0px 0px 10px 10px;
+}
+
+.dropdowns-wrapper .option-wrapper > div:nth-child(1):hover {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.options-value {
+  padding: 8px;
+}
+
+@media screen and (max-width: 400px) {
+  .dropdowns-wrapper {
+    width: 220px;
+  }
+}

@@ -1,20 +1,48 @@
-<div>
-  <label>Enter address</label>
-  <input
-    type="text"
-    (keydown.enter)="$event.preventDefault()"
-    placeholder="Search Origin"
-    type="text"
-    #searchOrigin
-  />
-
-  <input
-    type="text"
-    (keydown.enter)="$event.preventDefault()"
-    placeholder="Search Destination"
-    type="text"
-    #searchDestination
-  />
+<form class="google-map-wrapper" [formGroup]="personalForm">
+  <div class="map-wrapper">
+    <!-- Origin -->
+    <p class="header-input" style="width: 100%">จุดเริ่มต้น*</p>
+    <input
+      class="inputs-form"
+      type="text"
+      formControlName="origin"
+      (keydown.enter)="$event.preventDefault()"
+      placeholder="Search Origin"
+      #searchOrigin
+    />
+    <label
+      class="error"
+      *ngIf="
+        getPersonalForm['origin'].errors && getPersonalForm['origin'].touched
+      "
+      ><span *ngIf="getPersonalForm['origin'].errors['required']"
+        >กรุณากรอกจุดเริ่มต้น หรือเลือกจากแผนที่</span
+      ></label
+    >
+    <!-- Destination -->
+    <p class="header-input margin-top-input-title" style="width: 100%">
+      จุดหมาย*
+    </p>
+    <input
+      class="inputs-form"
+      type="text"
+      formControlName="destination"
+      (keydown.enter)="$event.preventDefault()"
+      placeholder="Search Destination"
+      #searchDestination
+    />
+    <label
+      class="error"
+      *ngIf="
+        getPersonalForm['destination'].errors &&
+        getPersonalForm['destination'].touched
+      "
+      ><span *ngIf="getPersonalForm['destination'].errors['required']"
+        >กรุณากรอกจุดหมาย หรือเลือกจากแผนที่</span
+      ></label
+    >
+  </div>
+</form>
+<div class="map-wrapper">
+  <div style="height: 350px; width: 100%" id="map"></div>
 </div>
-
-<div style="height: 500px" id="map"></div>
