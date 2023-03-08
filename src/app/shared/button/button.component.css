@@ -1,0 +1,37 @@
+.cancel {
+  background-color: #fff;
+  outline: none;
+  border: 1px solid #fff;
+
+  border: 1px solid #005fbc;
+  border-radius: 8px;
+  color: #005fbc;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+}
+
+.submit {
+  background: linear-gradient(
+    270.74deg,
+    #2e3579 0.35%,
+    #005fbc 99.1%,
+    #005fbc 99.1%
+  );
+  outline: none;
+  border: 1px solid #fff;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.default {
+  cursor: pointer;
+  background-color: #fff;
+  outline: none;
+  font-size: 14px;
+  border: 1px solid #fff;
+}
