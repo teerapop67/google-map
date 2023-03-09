@@ -1,0 +1,45 @@
+<div class="file-wrapper">
+  <!-- <input
+      *ngIf="!fileName"
+      class="file-input"
+      type="file"
+      accept=""
+      (change)="onSelectFile($event)"
+    /> -->
+  <div
+    *ngIf="!fileName"
+    [ngClass]="isSelectedFile ? 'dropzone-invalid' : 'dropzone'"
+  >
+    <!-- <img src="assets/icons/upload-file.png" alt="" />
+      <div>ลากและวางไฟล์ที่นี่ หรือคลิกเพื่ออัปโหลด</div>
+      <div *ngIf="!fileName && isSelectedFile" class="required-error">
+        <div>กรุณาอัปโหลดเอกสาร</div>
+      </div> -->
+  </div>
+  <div *ngIf="fileName" class="file-preview">
+    <div>
+      <img [src]="fileThumbnail || 'http://placehold.it/50'" alt="" />
+      <div>{{ fileName || "ไม่พบไฟล์ ลองใหม่อีกครั้ง" }}</div>
+    </div>
+    <img
+      class="file-remove"
+      src="assets/icons/file-remove-icon.png"
+      alt=""
+      (click)="onClearFile()"
+    />
+  </div>
+</div>
+<div class="button-wrapper">
+  <input
+    *ngIf="!fileName"
+    class="file-button"
+    type="file"
+    accept=""
+    (change)="onSelectFile($event)"
+  />
+  <app-button
+    label="เพิ่มหลักฐาน"
+    variant="submit"
+    padding="10px 30px"
+  ></app-button>
+</div>

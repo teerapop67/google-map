@@ -1,7 +1,9 @@
 <form class="google-map-wrapper" [formGroup]="personalForm">
   <div class="map-wrapper">
     <!-- Origin -->
-    <p class="header-input" style="width: 100%">จุดเริ่มต้น*</p>
+    <app-typography-header-input
+      title="จุดเริ่มต้น*"
+    ></app-typography-header-input>
     <input
       class="inputs-form"
       type="text"
@@ -20,9 +22,8 @@
       ></label
     >
     <!-- Destination -->
-    <p class="header-input margin-top-input-title" style="width: 100%">
-      จุดหมาย*
-    </p>
+
+    <app-typography-header-input title="จุดหมาย*"></app-typography-header-input>
     <input
       class="inputs-form"
       type="text"

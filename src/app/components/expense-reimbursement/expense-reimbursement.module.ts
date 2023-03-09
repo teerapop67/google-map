@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExpenseReimbursementComponent } from './expense-reimbursement';
 import { ExpenseReimbursementRoutingModule } from './expense-reimbursement-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GoogleMapComponent } from '../google-map/google-map.component';
@@ -12,10 +11,10 @@ import { CreateFormReimbursementComponent } from './create-form-reimbursement/cr
 import { PersonalVehicleComponent } from './create-form-reimbursement/personal-vehicle/personal-vehicle.component';
 import { PublicTransportComponent } from './create-form-reimbursement/public-transport/public-transport.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DocumentUploadComponent } from './create-form-reimbursement/personal-vehicle/document-upload/document-upload.component';
 
 @NgModule({
   declarations: [
-    ExpenseReimbursementComponent,
     GoogleMapComponent,
     EditFareRateComponent,
     HistoryReimbursementComponent,
@@ -24,6 +23,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CreateFormReimbursementComponent,
     PersonalVehicleComponent,
     PublicTransportComponent,
+    DocumentUploadComponent,
   ],
   imports: [
     CommonModule,

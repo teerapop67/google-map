@@ -152,9 +152,12 @@ export class GoogleMapComponent implements OnInit {
     destination: string,
     km: number
   ) {
+    console.log('knL', km);
     this.personalForm.get('origin')?.setValue(origin);
     this.personalForm.get('destination')?.setValue(destination);
-    this.personalForm.get('km')?.setValue(km);
+    this.personalForm
+      .get('km')
+      ?.setValue(Number(km.toString().replace(/\D/g, '')));
     this.personalForm.get('originLatLng')?.setValue(this.originLatLng);
     this.personalForm
       .get('destinationLatLng')

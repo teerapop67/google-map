@@ -87,9 +87,20 @@
           </div>
         </div>
       </form>
-      <div class="btn-submit-wrapper">
-        <button routerLink="/reimbursement">ยกเลิก</button>
-        <button type="submit" (click)="onFormSubmit()">ตกลง</button>
+      <div class="submit-wrapper">
+        <app-button
+          label="ยกเลิก"
+          variant="cancel"
+          padding="10px 30px"
+          routerLink="/reimbursement"
+        ></app-button>
+        <app-button
+          label="ตกลง"
+          variant="submit"
+          padding="10px 30px"
+          [disabled]="this.rateFareForm.invalid"
+          (click)="onFormSubmit()"
+        ></app-button>
       </div>
     </div>
   </ng-container>

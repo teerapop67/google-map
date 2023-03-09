@@ -27,13 +27,6 @@
   height: 15px;
 }
 
-.header-input {
-  font-size: 14px;
-  text-align: left;
-  margin-bottom: 2px;
-  line-height: 24px;
-}
-
 .space-btw {
   justify-content: space-between;
 }
@@ -57,4 +50,21 @@
 .error {
   color: #ef0303;
   font-size: 14px;
+}
+
+.submit-wrapper {
+  display: grid;
+  width: 100%;
+  grid-gap: 24px;
+  grid-template-columns: auto auto;
+  max-width: 380px;
+  margin: 0 auto;
+  margin-top: 48px;
+}
+
+.form-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+  margin: 0 auto;
 }

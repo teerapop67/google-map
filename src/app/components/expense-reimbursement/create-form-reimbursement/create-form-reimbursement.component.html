@@ -11,16 +11,36 @@
 
   <!-- Body -->
   <ng-container cardContent>
-    <div class="form-top-wrapper">
+    <form class="form-top-wrapper" [formGroup]="mainForm">
       <div style="display: flex; flex-direction: column">
         <p class="header-input" style="width: 100%">ประเภทการเดินทาง*</p>
         <app-dropdowns
           [dropdownOptions]="typeOfTravels"
           placeholderVal="เลือกประเภทการดินทาง"
-          (optionChosenEvent)="getTypeOfChosen($event)"
+          (optionChosenEvent)="setTypeOfChosen($event)"
         ></app-dropdowns>
+        <!-- Date picker -->
+        <div *ngIf="typeChosen">
+          <app-typography-header-input
+            title="วันที่ต้องการเบิก*"
+          ></app-typography-header-input>
+          <input
+            class="inputs-form"
+            type="text"
+            placeholder="เลือกวันที่ต้องการ"
+            formControlName="date"
+          />
+          <label
+            class="error"
+            *ngIf="getMainForm['date'].errors && getMainForm['date'].touched"
+            ><span *ngIf="getMainForm['date'].errors['required']"
+              >กรุณาเลือกวันที่ต้องการเบิก</span
+            ></label
+          >
+        </div>
       </div>
-    </div>
+    </form>
+
     <!-- Personal -->
     <app-personal-vehicle
       [personalForm]="personalForm"
@@ -28,8 +48,25 @@
     ></app-personal-vehicle>
     <!-- Public -->
     <app-public-transport
-      [personalForm]="personalForm"
+      [publicTransportForm]="publicTransportForm"
       *ngIf="typeChosen === typeOfTravels[1]"
     ></app-public-transport>
+
+    <!-- Submit -->
+    <div class="submit-wrapper" *ngIf="typeChosen">
+      <app-button
+        label="ยกเลิก"
+        variant="cancel"
+        padding="10px 30px"
+        routerLink="/reimbursement"
+      ></app-button>
+      <app-button
+        label="ตกลง"
+        variant="submit"
+        padding="10px 30px"
+        [disabled]="isInvalidSubmitted(disabledSubmit, typeChosen)"
+        (click)="onSubmitForm()"
+      ></app-button>
+    </div>
   </ng-container>
 </app-layout-reimbursement>

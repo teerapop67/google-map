@@ -18,6 +18,7 @@ export class EditFareRateComponent implements OnInit {
       rateControl: this.formBuilder.array([]),
     });
 
+    console.log('are:', this.rateControl);
     this.addRate(1, 2, 50);
   }
 
@@ -47,7 +48,6 @@ export class EditFareRateComponent implements OnInit {
     }
 
     this.isValidFormSubmitted = true;
-
     let rateFormSubmit = this.rateFareForm.value;
 
     this.router.navigateByUrl('/reimbursement');

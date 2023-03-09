@@ -1,35 +1,114 @@
 <form [formGroup]="personalForm">
   <!-- Date picker -->
-  <div class="personal-wrapper">
-    <p class="header-input margin-top-input-title" style="width: 100%">
-      วันที่ต้องการเบิก*
-    </p>
-    <input
-      class="inputs-form"
-      type="text"
-      placeholder="เลือกวันที่ต้องการ"
-      formControlName="date"
-    />
-    <label
-      class="error"
-      *ngIf="getPersonalForm['date'].errors && getPersonalForm['date'].touched"
-      ><span *ngIf="getPersonalForm['date'].errors['required']"
-        >กรุณาเลือกวันที่ต้องการเบิก</span
-      ></label
-    >
-
+  <div class="form-input-wrapper">
     <!-- Name of Works -->
-    <p class="header-input margin-top-input-title" style="width: 100%">
-      ชื่องาน*
-    </p>
+    <app-typography-header-input title="ชื่องาน*"></app-typography-header-input>
     <app-dropdowns
       [dropdownOptions]="nameOfWorks"
       placeholderVal="เลือกประเภทการดินทาง"
-      (optionChosenEvent)="getNameOfWorkChosen($event)"
+      (optionChosenEvent)="setNameOfWorkChosen($event)"
       validationAlert="กรุณาเลือกชื่องาน"
     ></app-dropdowns>
   </div>
 
   <!-- Google Map -->
   <app-google-map [personalForm]="personalForm"></app-google-map>
+
+  <!-- Expressway Options-->
+  <div class="form-input-wrapper">
+    <app-typography-header-input
+      title="ค่าผ่านทางพิเศษ (ถ้ามี)"
+    ></app-typography-header-input>
+
+    <div class="expressway-wrapper">
+      <label class="radio-inline">
+        <input
+          type="radio"
+          value="ไม่มีค่าผ่านทางพิเศษ"
+          name="expressway"
+          checked
+          (change)="onRadioChange($event)"
+        />
+        <span>ไม่มีค่าผ่านทางพิเศษ</span>
+      </label>
+      <label class="radio-inline">
+        <input
+          type="radio"
+          value="มีค่าผ่านทางพิเศษ"
+          name="expressway"
+          (change)="onRadioChange($event)"
+        />
+        <span>มีค่าผ่านทางพิเศษ</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Expressway Evidence -->
+  <div
+    *ngIf="expresswayCondition === 'มีค่าผ่านทางพิเศษ'"
+    class="form-input-wrapper"
+  >
+    <app-typography-header-input
+      title="ค่าผ่านทางพิเศษ (บาท)*"
+    ></app-typography-header-input>
+    <input
+      class="inputs-form"
+      type="text"
+      placeholder="กรอกค่าผ่านทางพิเศษ (บาท)"
+      formControlName="expresswayFare"
+    />
+    <label
+      class="error"
+      *ngIf="
+        getPersonalForm['expresswayFare'].errors &&
+        getPersonalForm['expresswayFare'].touched
+      "
+      ><span *ngIf="getPersonalForm['expresswayFare'].errors['required']"
+        >กรุณากรอกค่าผ่านทางพิเศษ (บาท)</span
+      ></label
+    >
+
+    <app-typography-header-input
+      title="อัปโหลดหลักฐาน*"
+    ></app-typography-header-input>
+    <app-document-upload
+      (onSelectFileEmit)="onSelectFile($event)"
+      [personalForm]="personalForm"
+      [expresswayCondition]="expresswayCondition"
+    ></app-document-upload>
+  </div>
+
+  <!-- Summary -->
+  <div class="form-input-wrapper">
+    <app-typography-header-input
+      title="จำนวนกิโลเมตร"
+    ></app-typography-header-input>
+    <span class="summary"
+      >{{
+        this.getPersonalForm["km"].value ? this.getPersonalForm["km"].value : 0
+      }}
+      กิโลเมตร</span
+    >
+
+    <app-typography-header-input
+      title="ค่าเดินทาง"
+    ></app-typography-header-input>
+    <span class="summary"
+      >{{
+        this.getPersonalForm["expresswayFare"].value
+          ? this.getPersonalForm["expresswayFare"].value
+          : 0
+      }}
+      บาท</span
+    >
+
+    <app-typography-header-input
+      title="รวมค่าเดินทาง"
+    ></app-typography-header-input>
+
+    <span class="summary">
+      {{ calculateSummary() }}
+      บาท</span
+    >
+  </div>
 </form>

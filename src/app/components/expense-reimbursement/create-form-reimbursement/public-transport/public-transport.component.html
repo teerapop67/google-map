@@ -1,1 +1,60 @@
-<p>public-transport works!</p>
+<form [formGroup]="publicTransportForm">
+  <div
+    class="public-transport-wrapper"
+    *ngFor="
+      let publicTransport of getPublicTransportControl.controls;
+      let i = index
+    "
+  >
+    <form class="form-input-wrapper" [formGroup]="publicTransport">
+      <!-- Public Transports -->
+      <app-typography-header-input
+        title="ประเภทขนส่งสาธารณะ*"
+      ></app-typography-header-input>
+      <app-dropdowns
+        [dropdownOptions]="publicTransports"
+        placeholderVal="เลือกประเภทขนส่งสาธารณะ"
+        (optionChosenEvent)="setPublicTransportChosen($event, i)"
+        validationAlert="กรุณาเลือกประเภทขนส่งสาธารณะ"
+      ></app-dropdowns>
+      <!-- Name of Works -->
+      <app-typography-header-input
+        title="ชื่องาน*"
+      ></app-typography-header-input>
+      <app-dropdowns
+        [dropdownOptions]="nameOfWorks"
+        placeholderVal="เลือกประเภทการดินทาง"
+        (optionChosenEvent)="setNameOfWorkChosen($event, i)"
+        validationAlert="กรุณาเลือกชื่องาน"
+      ></app-dropdowns>
+      <!-- expressway -->
+      <app-typography-header-input
+        title="ค่าผ่านทางพิเศษ (บาท)*"
+      ></app-typography-header-input>
+      <input
+        class="inputs-form"
+        type="text"
+        placeholder="กรอกค่าผ่านทางพิเศษ (บาท)"
+        formControlName="expresswayFare"
+      />
+      <!-- Fare Travel -->
+      <app-typography-header-input
+        title="ค่าเดินทาง (บาท)*"
+      ></app-typography-header-input>
+      <input
+        class="inputs-form"
+        type="text"
+        placeholder="กรอกค่าเดินทาง"
+        formControlName="fareTravel"
+      />
+      <!-- Update Evidence -->
+      <app-typography-header-input
+        title="อัปโหลดหลักฐาน*"
+      ></app-typography-header-input>
+      <app-document-upload
+        (onSelectFileEmit)="onSelectFile($event, i)"
+        [personalForm]="publicTransportForm"
+      ></app-document-upload>
+    </form>
+  </div>
+</form>
