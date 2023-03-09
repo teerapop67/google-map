@@ -34,6 +34,7 @@ export class DropdownsComponent implements OnInit {
   }
 
   onInputChange(e: any) {
+    console.log('indexL');
     this.turnOnOption = true;
     this.checkConditionError();
     this.inputDropdownValue = e.target.value;
