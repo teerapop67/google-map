@@ -45,6 +45,16 @@ export class DropdownsComponent implements OnInit {
     );
   }
 
+  checkConditionError() {
+    if (this.inputDropdownValue === '') {
+      // Alert Err will pop up
+      this.detectionTouch = true;
+    } else {
+      // Alert Err will fade out
+      this.detectionTouch = false;
+    }
+  }
+
   searchFromArray(value: string) {
     this.filteredOptions = this.dropdownOptions;
     let matches = [],
@@ -58,13 +68,6 @@ export class DropdownsComponent implements OnInit {
     return matches.length > 0 ? matches : this.checkFilteredCondition();
   }
 
-  checkFilteredCondition() {
-    if (this.inputDropdownValue) {
-      this.turnOnOption = false;
-    }
-    return this.dropdownOptions;
-  }
-
   setValueBeforeSend(value: string | null, validation: boolean) {
     const objectInputValue = {
       value: value,
@@ -73,13 +76,10 @@ export class DropdownsComponent implements OnInit {
     return objectInputValue;
   }
 
-  checkConditionError() {
-    if (this.inputDropdownValue === '') {
-      // Alert Err will pop up
-      this.detectionTouch = true;
-    } else {
-      // Alert Err will fade out
-      this.detectionTouch = false;
+  checkFilteredCondition() {
+    if (this.inputDropdownValue) {
+      this.turnOnOption = false;
     }
+    return this.dropdownOptions;
   }
 }
