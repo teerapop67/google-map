@@ -1,9 +1,4 @@
-.form-input-wrapper {
-  display: flex;
-  flex-direction: column;
-  max-width: 380px;
-  margin: 0 auto;
-}
+
 
 .expressway-wrapper {
   display: flex;

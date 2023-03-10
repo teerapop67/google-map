@@ -13,7 +13,7 @@ import {
 })
 export class CreateFormReimbursementComponent implements OnInit {
   typeOfTravels!: string[];
-  typeChosen: string | null = 'ขนส่งสาธารณะ';
+  typeChosen: string | null = '';
   disabledSubmit: boolean = false;
 
   mainForm: FormGroup = mainForm();
@@ -44,14 +44,16 @@ export class CreateFormReimbursementComponent implements OnInit {
 
   setTypeOfChosen(type: any) {
     this.typeChosen = type.value;
-    console.log('asdsa', type.value);
     this.mainForm.get('type')?.setValue(type.value);
-    console.log(this.mainForm.value);
   }
 
   onSubmitForm() {
     if (this.disabledSubmit) return;
-    console.log(this.personalForm.value);
+    if (this.typeChosen === 'พาหนะส่วนตัว') {
+      console.log(this.personalForm.value);
+    } else {
+      console.log(this.getPublicTransportControl.value);
+    }
     this.disabledSubmit = true;
 
     // after already sent data
@@ -90,14 +92,17 @@ export class CreateFormReimbursementComponent implements OnInit {
       this.getPersonalForm['destinationLatLng']?.invalid ||
       this.getPersonalForm['workName'].invalid
     ) {
-      console.log('imm');
       return true;
     }
 
     if (
       this.getPersonalForm['expresswayOptions'].value === 'มีค่าผ่านทางพิเศษ'
     ) {
-      if (this.getPersonalForm['expresswayFare'].invalid) return true;
+      if (
+        this.getPersonalForm['expresswayFare'].invalid ||
+        this.getPersonalForm['evidenceExpresswayFile'].invalid
+      )
+        return true;
     }
 
     return false;

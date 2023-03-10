@@ -1,5 +1,5 @@
 <app-layout-reimbursement
-  styleHeader="center"
+  justifyContent="center"
   titleHeader="เบิกค่าพาหนะการเดินทาง"
 >
   <!-- Header -->
@@ -11,8 +11,8 @@
 
   <!-- Body -->
   <ng-container cardContent>
-    <form class="form-top-wrapper" [formGroup]="mainForm">
-      <div style="display: flex; flex-direction: column">
+    <form [formGroup]="mainForm">
+      <div class="form-input-wrapper">
         <p class="header-input" style="width: 100%">ประเภทการเดินทาง*</p>
         <app-dropdowns
           [dropdownOptions]="typeOfTravels"

@@ -1,8 +1,46 @@
 .public-transport-wrapper {
   background: #ffffff;
+  position: relative;
   box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   padding: 0px 0 24px 0;
   max-width: 450px;
   margin: 32px auto;
+}
+
+.remove-icon {
+  position: absolute;
+  top: 8px;
+  cursor: pointer;
+  right: 10px;
+}
+
+.add-multi-transport-wrapper {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.add-transport {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.add-transport > p {
+  color: #005fbc;
+  margin: 0;
+}
+
+.add-transport > span {
+  margin-bottom: 4px;
+}
+
+.summary {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  border-bottom: 1px solid #005fbc;
 }

@@ -93,14 +93,7 @@
     <app-typography-header-input
       title="ค่าเดินทาง"
     ></app-typography-header-input>
-    <span class="summary"
-      >{{
-        this.getPersonalForm["expresswayFare"].value
-          ? this.getPersonalForm["expresswayFare"].value
-          : 0
-      }}
-      บาท</span
-    >
+    <span class="summary">{{ calculateSummary() }} บาท</span>
 
     <app-typography-header-input
       title="รวมค่าเดินทาง"

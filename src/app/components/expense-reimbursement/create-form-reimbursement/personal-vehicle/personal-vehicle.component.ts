@@ -26,7 +26,6 @@ export class PersonalVehicleComponent implements OnInit {
   }
 
   setNameOfWorkChosen(work: any) {
-    console.log('work: ', work.value, 'validate: ', work.validate);
     this.personalForm.get('workName')?.setValue(work.value);
 
     console.log(this.personalForm.value);
@@ -54,13 +53,15 @@ export class PersonalVehicleComponent implements OnInit {
   calculateSummary() {
     let summary = 0;
     if (this.getPersonalForm['km'].value) {
-      if (this.getPersonalForm['expresswayFare'].value) {
-        summary =
-          this.getPersonalForm['km'].value * 5 +
-          this.convertToInt(this.getPersonalForm['expresswayFare'].value);
-      } else {
-        summary = this.getPersonalForm['km'].value * 5;
+      for (let i = 0; i < this.getPersonalForm['km'].value.length; i++) {
+        console.log('km', i);
       }
+      summary += this.getPersonalForm['km'].value * 5;
+    }
+    if (this.getPersonalForm['expresswayFare'].value) {
+      summary += this.convertToInt(
+        this.getPersonalForm['expresswayFare'].value
+      );
     }
 
     return summary;

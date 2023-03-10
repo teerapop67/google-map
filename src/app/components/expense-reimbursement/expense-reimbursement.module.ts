@@ -11,7 +11,8 @@ import { CreateFormReimbursementComponent } from './create-form-reimbursement/cr
 import { PersonalVehicleComponent } from './create-form-reimbursement/personal-vehicle/personal-vehicle.component';
 import { PublicTransportComponent } from './create-form-reimbursement/public-transport/public-transport.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { DocumentUploadComponent } from './create-form-reimbursement/personal-vehicle/document-upload/document-upload.component';
+import { DocumentUploadComponent } from './create-form-reimbursement/document-upload/document-upload.component';
+import { DetailsPetitionComponent } from './details-petition/details-petition.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DocumentUploadComponent } from './create-form-reimbursement/personal-ve
     PersonalVehicleComponent,
     PublicTransportComponent,
     DocumentUploadComponent,
+    DetailsPetitionComponent,
   ],
   imports: [
     CommonModule,

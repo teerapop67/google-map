@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TransportType } from 'src/app/interface/interface';
 
 @Component({
   selector: 'app-public-transport',
@@ -17,7 +18,6 @@ export class PublicTransportComponent implements OnInit {
   ngOnInit() {
     this.nameOfWorks = ['บางระจันทร์', 'ขุนพันธ์'];
     this.publicTransports = ['แท็กซี่', 'ตุ๊กๆ', 'รถเมล์', 'เรือขนส่ง'];
-    console.log('SHS: ', this.getPublicTransportControl);
   }
 
   get getPublicTransportControl() {
@@ -30,16 +30,26 @@ export class PublicTransportComponent implements OnInit {
     return this.getPublicTransportControl.controls;
   }
 
-  addMoreTransport() {
+  addMoreTransport(
+    type: string,
+    workName: string,
+    expresswayFare: string,
+    fareTravel: string,
+    evidence: any
+  ) {
     const transportForm = this.formBuilder.group({
-      typeOfTransport: ['', [Validators.required]],
-      workName: ['', [Validators.required]],
-      expresswayFare: ['', [Validators.required]],
-      fareTravel: ['', [Validators.required]],
-      evidence: ['', [Validators.required]],
+      typeOfTransport: [type, [Validators.required]],
+      workName: [workName, [Validators.required]],
+      expresswayFare: [expresswayFare, [Validators.required]],
+      fareTravel: [fareTravel, [Validators.required]],
+      evidence: [evidence, [Validators.required]],
     });
 
     this.getPublicTransportControl.push(transportForm);
+  }
+
+  removeTransport(index: number) {
+    this.getPublicTransportControl.removeAt(index);
   }
 
   setPublicTransportChosen(transport: any, index: number) {
@@ -60,5 +70,23 @@ export class PublicTransportComponent implements OnInit {
     this.setPublicTransportControl[index].controls['evidence']?.setValue(event);
     console.log('gewfew', this.getPublicTransportControl.value);
     console.log('sadasddsa', this.publicTransportForm.value);
+  }
+
+  convertToInt(number: string) {
+    return parseInt(number);
+  }
+
+  calculateSummaryTravel() {
+    let summary = 0;
+    this.getPublicTransportControl.value.map((transport: TransportType) => {
+      if (transport.expresswayFare) {
+        summary += this.convertToInt(transport.expresswayFare);
+      }
+      if (transport.fareTravel) {
+        summary += this.convertToInt(transport.fareTravel);
+      }
+    });
+
+    return summary;
   }
 }
