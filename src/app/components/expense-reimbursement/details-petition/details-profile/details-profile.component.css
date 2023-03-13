@@ -1,0 +1,19 @@
+.detail-wrapper {
+  display: grid;
+  grid-template-columns: 150px auto;
+}
+
+.detail-wrapper > p {
+  margin: 4px 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.detail-name {
+  margin: 4px 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 35px;
+  color: #005fbc;
+}

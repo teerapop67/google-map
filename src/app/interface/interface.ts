@@ -13,3 +13,11 @@ export interface SummaryFareType {
   fareTravel: number;
   summary: number;
 }
+
+export interface TransportType {
+  typeOfTransport: string | null;
+  workName: string | null;
+  expresswayFare: string;
+  fareTravel: string;
+  evidence: any;
+}

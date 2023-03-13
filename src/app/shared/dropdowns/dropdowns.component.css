@@ -7,13 +7,14 @@
   padding-left: 14px;
   padding-top: 6px;
   padding-bottom: 6px;
-  width: 380px;
+  width: 100%;
 }
 
 .dropdowns-wrapper > input {
   border: none;
   outline: none;
   font-size: 14px;
+  background: transparent;
 }
 
 .rotate-arrow {
@@ -63,9 +64,10 @@
 .options-value {
   padding: 8px;
 }
-
+/* 
 @media screen and (max-width: 400px) {
   .dropdowns-wrapper {
     width: 220px;
+    margin: 0 auto;
   }
-}
+} */

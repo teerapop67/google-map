@@ -13,6 +13,10 @@ import { PublicTransportComponent } from './create-form-reimbursement/public-tra
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DocumentUploadComponent } from './create-form-reimbursement/document-upload/document-upload.component';
 import { DetailsPetitionComponent } from './details-petition/details-petition.component';
+import { DetailsProfileComponent } from './details-petition/details-profile/details-profile.component';
+import { TimelineApproveComponent } from './details-petition/timeline-approve/timeline-approve.component';
+import { FooterDetailReimbursementComponent } from './detail-reimbursement/footer-detail-reimbursement/footer-detail-reimbursement.component';
+import { BtnHeaderLinkComponent } from './detail-reimbursement/btn-header-link/btn-header-link.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { DetailsPetitionComponent } from './details-petition/details-petition.co
     PublicTransportComponent,
     DocumentUploadComponent,
     DetailsPetitionComponent,
+    DetailsProfileComponent,
+    TimelineApproveComponent,
+    FooterDetailReimbursementComponent,
+    BtnHeaderLinkComponent,
   ],
   imports: [
     CommonModule,

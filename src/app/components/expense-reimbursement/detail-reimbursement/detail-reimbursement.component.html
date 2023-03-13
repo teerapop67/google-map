@@ -4,23 +4,7 @@
 >
   <ng-container cardHeader>
     <!-- HEADER -->
-    <div class="btn-link-wrapper">
-      <a routerLink="/reimbursement/g" class="btn-link btn-history">
-        <img src="assets/icons/history-icon.png" alt="history-icon" />
-        ประวัติการเบิก
-      </a>
-      <a routerLink="/reimbursement/g" class="btn-link btn-primary">
-        <img src="assets/icons/comment-icon.png" alt="history-icon" />
-        ดูคำขอการเบิก
-      </a>
-      <a
-        routerLink="/reimbursement/form-reimbursement"
-        class="btn-link btn-primary"
-      >
-        <img src="assets/icons/add-icon.png" alt="history-icon" />
-        สร้างฟอร์มการเบิก
-      </a>
-    </div>
+    <app-btn-header-link></app-btn-header-link>
   </ng-container>
   <ng-container cardContent>
     <!-- BODY TABLE -->
@@ -60,21 +44,6 @@
   </ng-container>
   <ng-container cardContent>
     <!-- Footer  -->
-    <div class="footer-reimbursement-wrapper">
-      <p>
-        หมายเหตุ: การเบิกค่าพาหนะ เดินทางโดยรถโดยสาร
-        สามารถเบิกตามจริงโดยการแนบหลักฐานการชำระเงิน <br />การเบิกค่าพาหนะ
-        ครั้งละไม่เกิน 500 บาท/คน
-      </p>
-      <a routerLink="/reimbursement/fare-rate" class="btn-link btn-history">
-        <img
-          src="assets/icons/edit-icon.png"
-          width="16"
-          height="16"
-          alt="history-icon"
-        />
-        แก้ไขอัตราค่าเดินทาง
-      </a>
-    </div>
+    <app-footer-detail-reimbursement></app-footer-detail-reimbursement>
   </ng-container>
 </app-layout-reimbursement>

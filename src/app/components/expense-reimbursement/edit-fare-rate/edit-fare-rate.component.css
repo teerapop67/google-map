@@ -1,21 +1,3 @@
-/* Header */
-.arrow-back {
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding: 4px;
-  background: linear-gradient(90deg, #e69755 0.1%, #ff5444 100.01%);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.arrow-back > img {
-  width: 15px;
-  height: 15px;
-}
-
 /* Body */
 
 .content-wrapper-edit-fare-rate {

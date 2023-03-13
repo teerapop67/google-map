@@ -1,10 +1,11 @@
 .google-map-wrapper {
-  background: #ffffff;
+  background: #d0e8ff;
   box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   padding: 0px 0 24px 0;
   max-width: 450px;
   margin: 32px auto;
+  position: relative;
 }
 
 .map-wrapper {
@@ -12,4 +13,36 @@
   flex-direction: column;
   max-width: 380px;
   margin: 0 auto;
+  padding: 0 16px;
+}
+
+.dot-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 18px;
+  display: flex;
+  flex-direction: column;
+  color: #005fbc;
+}
+
+.rotate-dash {
+  transform: rotateY(30deg);
+}
+
+.dot-wrapper > li {
+  font-size: 18px;
+  margin: -8px 0;
+  margin-left: -2px;
+}
+
+.dot-wrapper > span {
+  font-size: 12px;
+  margin: -2px 0;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 500px) {
+  .dot-wrapper {
+    display: none;
+  }
 }

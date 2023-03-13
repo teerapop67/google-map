@@ -1,1 +1,66 @@
-<p>history-reimbursement works!</p>
+<app-layout-reimbursement
+  justifyContent="left"
+  titleHeader="ประวัติการเบิกเงินค่าเดินทาง"
+  margin="0 0 0 40px"
+>
+  <!-- Header -->
+  <ng-container cardHeader>
+    <span routerLink="/reimbursement" class="arrow-back">
+      <img src="assets/icons/arrow-back-icon.png" alt="arrow" />
+    </span>
+    <input
+      type="date"
+      style="margin-left: 24px"
+      [ngModel]="dateVal | date : 'yyyy-MM-dd'"
+      (ngModelChange)="isFilteredTable($event)"
+    />
+  </ng-container>
+
+  <ng-container cardContent>
+    <!-- BODY TABLE -->
+    <table>
+      <thead class="thead">
+        <th style="border-radius: 4px 0 0 0">ลำดับ</th>
+        <th>วันที่</th>
+        <th>ประเภทการเดินทาง</th>
+        <th>ชื่องาน</th>
+        <th>ค่าเดินทาง</th>
+        <th>สถานะ</th>
+        <th>เหตุผล</th>
+        <th style="border-radius: 0 4px 0 0">ยกเลิก</th>
+      </thead>
+      <tbody
+        class="tbody"
+        *ngFor="let row of filteredTable; index as i"
+        [ngClass]="i % 2 !== 0 ? 'haveBg' : ''"
+      >
+        <td>
+          {{ row.sequence }}
+        </td>
+        <td>
+          {{ row.date }}
+        </td>
+        <td>
+          {{ row.typeOfTravel }}
+        </td>
+        <td>
+          {{ row.workName }}
+        </td>
+        <td>
+          {{ row.fare }}
+        </td>
+        <td [ngStyle]="{ color: onStateChange(row.state) }">
+          {{ row.state }}
+        </td>
+        <td>
+          {{ row.reason }}
+        </td>
+        <td>
+          {{ row.cancel }}
+        </td>
+      </tbody>
+    </table>
+  </ng-container>
+</app-layout-reimbursement>
+
+<!-- Timeline -->

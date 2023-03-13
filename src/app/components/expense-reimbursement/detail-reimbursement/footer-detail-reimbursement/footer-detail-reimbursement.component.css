@@ -1,0 +1,32 @@
+/* Footer */
+
+.footer-reimbursement-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-reimbursement-wrapper > p {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.btn-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 8px 24px;
+  height: 36px;
+  font-size: 14px;
+  color: #fff;
+  margin: 0 8px;
+}
+
+.btn-history {
+  background: linear-gradient(90deg, #e69755 0.1%, #ff5444 100.01%);
+}

@@ -1,6 +1,6 @@
 <form [formGroup]="personalForm">
   <!-- Date picker -->
-  <div class="form-input-wrapper">
+  <div class="container-mxW">
     <!-- Name of Works -->
     <app-typography-header-input title="ชื่องาน*"></app-typography-header-input>
     <app-dropdowns
@@ -15,7 +15,7 @@
   <app-google-map [personalForm]="personalForm"></app-google-map>
 
   <!-- Expressway Options-->
-  <div class="form-input-wrapper">
+  <div class="container-mxW">
     <app-typography-header-input
       title="ค่าผ่านทางพิเศษ (ถ้ามี)"
     ></app-typography-header-input>
@@ -46,7 +46,7 @@
   <!-- Expressway Evidence -->
   <div
     *ngIf="expresswayCondition === 'มีค่าผ่านทางพิเศษ'"
-    class="form-input-wrapper"
+    class="container-mxW"
   >
     <app-typography-header-input
       title="ค่าผ่านทางพิเศษ (บาท)*"
@@ -79,7 +79,7 @@
   </div>
 
   <!-- Summary -->
-  <div class="form-input-wrapper">
+  <div class="container-mxW">
     <app-typography-header-input
       title="จำนวนกิโลเมตร"
     ></app-typography-header-input>

@@ -33,7 +33,10 @@ export const personalForm = () => {
       validators: [Validators.required],
       updateOn: 'change',
     }),
-    evidenceExpresswayFile: new FormControl('ไม่ได้อัพไฟล์'),
+    evidenceExpresswayFile: new FormControl('', {
+      validators: [Validators.required],
+      updateOn: 'change',
+    }),
     expresswayOptions: new FormControl('ไม่มีค่าผ่านทางพิเศษ'),
     workName: new FormControl(),
   });

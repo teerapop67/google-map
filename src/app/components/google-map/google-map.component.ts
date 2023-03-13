@@ -98,7 +98,6 @@ export class GoogleMapComponent implements OnInit {
     type: string,
     place: google.maps.places.PlaceResult | any
   ) {
-    console.log('place:', place);
     if (type === 'destination') {
       this.destinationLatLng = {
         lat: place.geometry.location?.lat(),
@@ -147,17 +146,20 @@ export class GoogleMapComponent implements OnInit {
     }
   }
 
+  private convertKmToNumber(number: string) {
+    return Number(
+      number.replace(/[^.\d]/g, '').replace(/^(\d*\.?)|(\d*)\.?/g, '$1$2')
+    );
+  }
+
   private assignValueToFormSubmit(
     origin: string,
     destination: string,
-    km: number
+    km: string
   ) {
-    console.log('knL', km);
     this.personalForm.get('origin')?.setValue(origin);
     this.personalForm.get('destination')?.setValue(destination);
-    this.personalForm
-      .get('km')
-      ?.setValue(Number(km.toString().replace(/\D/g, '')));
+    this.personalForm.get('km')?.setValue(this.convertKmToNumber(km));
     this.personalForm.get('originLatLng')?.setValue(this.originLatLng);
     this.personalForm
       .get('destinationLatLng')

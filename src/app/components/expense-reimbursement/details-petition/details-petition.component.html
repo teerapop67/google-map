@@ -9,26 +9,24 @@
       <img src="assets/icons/arrow-back-icon.png" alt="arrow" />
     </span>
   </ng-container>
+
   <ng-container cardContent>
-    <!-- BODY TABLE -->
-  </ng-container>
-  <ng-container cardContent>
-    <!-- Footer  -->
-    <div class="footer-reimbursement-wrapper">
-      <p>
-        หมายเหตุ: การเบิกค่าพาหนะ เดินทางโดยรถโดยสาร
-        สามารถเบิกตามจริงโดยการแนบหลักฐานการชำระเงิน <br />การเบิกค่าพาหนะ
-        ครั้งละไม่เกิน 500 บาท/คน
-      </p>
-      <a routerLink="/reimbursement/fare-rate" class="btn-link btn-history">
+    <!-- Header Profile  -->
+    <div class="container-profile">
+      <div class="wrapper-profile">
         <img
-          src="assets/icons/edit-icon.png"
-          width="16"
-          height="16"
-          alt="history-icon"
+          class="profile-wrapper"
+          [src]="pathProfile"
+          alt="profile"
+          width="120"
+          height="120"
         />
-        แก้ไขอัตราค่าเดินทาง
-      </a>
+        <!-- Detail Profile -->
+        <app-details-profile [userDetail]="userDetail"></app-details-profile>
+      </div>
     </div>
   </ng-container>
 </app-layout-reimbursement>
+
+<!-- Timeline -->
+<app-timeline-approve></app-timeline-approve>
